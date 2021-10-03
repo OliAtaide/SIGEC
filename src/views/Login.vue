@@ -1,15 +1,15 @@
 <template>
   <v-sheet class="sheet d-flex" block d-flex fixed>
-    <v-sheet class="brand">
+    <!-- <v-sheet class="brand">
       <h1>SIGEC</h1>
       <h3>Sistema de gestão de casos</h3>
       <hr width="10%" />
       <v-btn class="mt-3" rounded outlined color="white"
         >Acessar transparência</v-btn
       >
-    </v-sheet>
+    </v-sheet> -->
     <v-card width="30%" height="90%" class="pa-10">
-      <v-form>
+      <v-form @submit.prevent="submitForm">
         <v-card-title>Login</v-card-title>
         <v-text-field
           color="#008AB6"
@@ -19,6 +19,7 @@
           outlined
           dense
           prepend-inner-icon="mdi-email"
+          v-model="email"
         ></v-text-field>
         <v-text-field
           color="#008AB6"
@@ -28,6 +29,7 @@
           outlined
           dense
           prepend-inner-icon="mdi-lock"
+          v-model="password"
         ></v-text-field>
         <v-btn type="submit" dark color="#0C109C" block rounded> Entrar </v-btn>
       </v-form>
@@ -42,10 +44,47 @@
       </v-row>
     </v-card>
   </v-sheet>
+  <!-- e-mail
+usuario@lais.huol.ufrn.br
+senha
+senha@123 -->
 </template>
 
+
+
 <script>
-export default {};
+import axios from 'axios';
+
+export default {
+  name: 'Login',
+
+  data() {
+    return {
+      user: "",
+      email: "",
+      password: "",
+      errors: [],
+    };
+  },
+
+  methods: {
+    async submitForm() {
+      const formData = {
+        senha: this.password,
+        email: this.email,
+      };
+      await axios
+        .post("/auth/login/", formData)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch(error => console.log(error));
+    },
+
+
+
+  }
+};
 </script>
 
 <style scoped>

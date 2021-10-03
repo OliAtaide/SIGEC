@@ -13,45 +13,15 @@
     </v-row>
     <hr class="mb-5">
     <v-row>
-      <v-col md="4">
+      <v-col v-for="v in vinculos" :key="v.id" md="4">
         <v-card>
           <v-card-title>
             <v-icon>mdi-briefcase</v-icon>
-            Médico
+            {{ v.perfil }}
           </v-card-title>
           <v-card-subtitle>
             <v-icon>mdi-map-marker-outline</v-icon>
-            UBS do Alecrim
-          </v-card-subtitle>
-          <v-card-actions>
-            <v-btn dark color="#0C109C" block rounded> Acessar </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-col>
-      <v-col md="4">
-        <v-card>
-          <v-card-title>
-            <v-icon>mdi-briefcase</v-icon>
-            Médico
-          </v-card-title>
-          <v-card-subtitle>
-            <v-icon>mdi-map-marker-outline</v-icon>
-            UBS do Alecrim
-          </v-card-subtitle>
-          <v-card-actions>
-            <v-btn dark color="#0C109C" block rounded> Acessar </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-col>
-      <v-col md="4">
-        <v-card>
-          <v-card-title>
-            <v-icon>mdi-briefcase</v-icon>
-            Médico
-          </v-card-title>
-          <v-card-subtitle>
-            <v-icon>mdi-map-marker-outline</v-icon>
-            UBS do Alecrim
+            {{ v.estabelecimento }}
           </v-card-subtitle>
           <v-card-actions>
             <v-btn dark color="#0C109C" block rounded> Acessar </v-btn>
@@ -63,7 +33,26 @@
 </template>
 
 <script>
-export default {};
+import axios from 'axios';
+
+export default {
+  created() {
+    this.getIndicadores();
+  },
+
+  data() {
+    return{
+      vinculos: []
+    }
+  },
+
+  methods: {
+    getIndicadores() {
+      axios.get('/vinculos')
+      .then(response => this.vinculos = response.data.data)
+    }
+  }
+};
 </script>
 
 <style scoped>
