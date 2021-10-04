@@ -3,42 +3,117 @@
     <h1>Transparência</h1>
     <v-row>
       <v-col>
-        <v-row class="ma-0">
-          <v-card width="100%" class="pa-5" color="#0C109C" height="180">
-            <v-sheet width="inherit" class="icon-sheet pa-3">
-              <v-icon>mdi-clipboard-text</v-icon>
-            </v-sheet>
-            <v-card-title>17992</v-card-title>
+        <v-row class="ma-0 mb-6">
+          <v-card width="100%" class="pa-5" color="#0C109C" dark>
+            <v-row class="ma-0">
+              <v-sheet
+                width="inherit"
+                color="white"
+                class="icon-sheet pa-3 rounded-sm"
+              >
+                <v-icon color="#0C109C">mdi-clipboard-text</v-icon>
+              </v-sheet>
+              <v-spacer></v-spacer>
+              <v-card-title class="pa-0">
+                <strong>{{ indicadores.tratados }}</strong>
+              </v-card-title>
+            </v-row>
+            <v-row class="ma-0">
+              <v-card-text width="100%" class="text-right pr-0"
+                >Casos tratados</v-card-text
+              >
+            </v-row>
           </v-card>
         </v-row>
         <v-row class="ma-0">
-          <v-card outlined class="card-blue" width="100%" height="180"></v-card>
+          <v-card outlined class="card-blue pa-5" width="100%">
+            <v-row class="ma-0">
+              <v-sheet
+                width="inherit"
+                color="#0C109C"
+                class="icon-sheet pa-3 rounded-sm"
+              >
+                <v-icon color="white">mdi-clipboard-text</v-icon>
+              </v-sheet>
+              <v-spacer></v-spacer>
+              <v-card-title class="pa-0">
+                <strong>{{ indicadores.suspeitos }}</strong>
+              </v-card-title>
+            </v-row>
+            <v-row class="ma-0">
+              <v-card-text width="100%" class="text-right pr-0"
+                >Casos suspeitos</v-card-text
+              >
+            </v-row>
+          </v-card>
         </v-row>
       </v-col>
       <v-col>
-        <v-row class="ma-0">
-          <v-card width="100%" class="pa-5 card-green" height="180" outlined>
-            <v-sheet width="inherit" class="icon-sheet pa-3">
-              <v-icon>mdi-clipboard-text</v-icon>
-            </v-sheet>
-            <v-card-title>17992</v-card-title>
+        <v-row class="ma-0 mb-6">
+          <v-card width="100%" class="pa-5 card-green" outlined>
+            <v-row class="ma-0">
+              <v-sheet
+                width="inherit"
+                color="#1f8f3c"
+                class="icon-sheet pa-3 rounded-sm"
+              >
+                <v-icon color="white">mdi-clipboard-text</v-icon>
+              </v-sheet>
+              <v-spacer></v-spacer>
+              <v-card-title class="pa-0">
+                <strong>{{ indicadores.descartados }}</strong>
+              </v-card-title>
+            </v-row>
+            <v-row class="ma-0">
+              <v-card-text width="100%" class="text-right pr-0"
+                >Casos descartados</v-card-text
+              >
+            </v-row>
           </v-card>
         </v-row>
         <v-row class="ma-0">
-          <v-card
-            class="card-orange"
-            width="100%"
-            outlined
-            height="180"
-          ></v-card>
+          <v-card class="card-orange pa-5" width="100%" outlined>
+            <v-row class="ma-0">
+              <v-sheet
+                width="inherit"
+                color="#e07716"
+                class="icon-sheet pa-3 rounded-sm"
+              >
+                <v-icon color="white">mdi-clipboard-text</v-icon>
+              </v-sheet>
+              <v-spacer></v-spacer>
+              <v-card-title class="pa-0">
+                <strong>{{ indicadores.perdidos }}</strong>
+              </v-card-title>
+            </v-row>
+            <v-row class="ma-0">
+              <v-card-text width="100%" class="text-right pr-0"
+                >Casos perdidos</v-card-text
+              >
+            </v-row>
+          </v-card>
         </v-row>
       </v-col>
       <v-col class="mb-0">
         <v-card class="card-cyan pa-5" outlined height="100%">
-          <v-sheet width="inherit" class="icon-sheet pa-3">
-            <v-icon>mdi-clipboard-text</v-icon>
-          </v-sheet>
-          <v-card-title>17992</v-card-title>
+          <v-row class="ma-0">
+            <v-sheet
+              width="inherit"
+              color="#3e86ab"
+              class="icon-sheet pa-3 rounded-sm"
+            >
+              <v-icon color="white">mdi-clipboard-text</v-icon>
+            </v-sheet>
+            <v-spacer></v-spacer>
+            <v-card-title class="pa-0">
+              <strong>{{ soma }}</strong>
+            </v-card-title>
+          </v-row>
+          <v-row class="ma-0">
+            <v-card-text width="100%" class="text-right pr-0"
+              >Casos perdidos</v-card-text
+            >
+          </v-row>
         </v-card>
       </v-col>
     </v-row>
@@ -46,7 +121,35 @@
 </template>
 
 <script>
-export default {};
+import axios from "axios";
+
+export default {
+  name: "Transparencia",
+
+  created() {
+    this.getData();
+  },
+
+  data() {
+    return {
+      indicadores: "",
+      soma: "",
+    };
+  },
+
+  methods: {
+    getData() {
+      axios
+        .get("/indicadores")
+        .then((response) => {
+          this.indicadores = response.data.data;
+          var est = this.indicadores.estratificacao;
+          this.soma = est.idosos + est.adultos + est.jovens;
+        })
+        .catch((error) => console.log(error));
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -54,11 +157,11 @@ export default {};
   width: 64%;
   background-color: white;
 }
-h1{
-    font-weight: inherit;
-    text-align: center;
-    color: #FCA311;
-    margin-bottom: 5em;
+h1 {
+  font-weight: inherit;
+  text-align: center;
+  color: #fca311;
+  margin-bottom: 5em;
 }
 header {
   display: none;

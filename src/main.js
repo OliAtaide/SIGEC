@@ -8,7 +8,6 @@ import vuetify from './plugins/vuetify'
 Vue.config.productionTip = false
 
 axios.defaults.baseURL = 'https://gestaodecasos-edital043.vercel.app/api/'
-axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
 new Vue({
   router,
