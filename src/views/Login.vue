@@ -70,19 +70,17 @@ export default {
   methods: {
     async submitForm() {
       const formData = {
-        senha: this.password,
+        password: this.password,
         email: this.email,
       };
       await axios
-        .post("/auth/login/", formData)
+        .post("auth/login", formData)
         .then((response) => {
-          console.log(response);
+          console.log(response.data);
+          this.$store.state.isAuthenticated = true;
         })
         .catch(error => console.log(error));
     },
-
-
-
   }
 };
 </script>

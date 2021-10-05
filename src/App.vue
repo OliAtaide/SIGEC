@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <navbar/>
+    <navbar v-if="!['Login', 'Transparencia'].includes($route.name)"/>
     <v-main>
       <router-view/>
     </v-main>
