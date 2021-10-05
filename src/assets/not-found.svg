@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="159.849" height="91.813" viewBox="0 0 159.849 91.813">
+  <g id="Group_44" data-name="Group 44" transform="translate(-884.093 -622.035)">
+    <path id="Icon_metro-search" data-name="Icon metro-search" d="M91.538,80.059l-21.748-18.5A9.7,9.7,0,0,0,63.2,58.7a34.435,34.435,0,1,0-3.854,3.854A9.7,9.7,0,0,0,62.2,69.148L80.7,90.9A7.713,7.713,0,1,0,91.538,80.059ZM37,59.311A22.953,22.953,0,1,1,59.954,36.358,22.953,22.953,0,0,1,37,59.311Z" transform="translate(881.522 620.107)" fill="#0c109c"/>
+    <g id="Icon_material-sentiment-dissatisfied" data-name="Icon material-sentiment-dissatisfied" transform="translate(965.5 619.035)">
+      <path id="Path_32" data-name="Path 32" d="M32.316,17.658A5.658,5.658,0,1,1,26.658,12,5.658,5.658,0,0,1,32.316,17.658Z" transform="translate(27.265 13.633)" fill="#0c109c"/>
+      <path id="Path_33" data-name="Path 33" d="M21.816,17.658A5.658,5.658,0,1,1,16.158,12,5.658,5.658,0,0,1,21.816,17.658Z" transform="translate(11.36 13.633)" fill="#0c109c"/>
+      <path id="Path_34" data-name="Path 34" d="M40.683,3A37.721,37.721,0,1,0,78.442,40.721,37.7,37.7,0,0,0,40.683,3Zm.038,67.9A30.177,30.177,0,1,1,70.9,40.721,30.168,30.168,0,0,1,40.721,70.9Zm0-22.633a20.728,20.728,0,0,0-19.313,13.2h6.3a15,15,0,0,1,26.027,0h6.3A20.728,20.728,0,0,0,40.721,48.265Z" fill="#0c109c"/>
+    </g>
+  </g>
+</svg>

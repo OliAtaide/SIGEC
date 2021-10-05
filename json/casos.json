@@ -1,0 +1,48 @@
+{
+    "data": [
+        {
+            "nome": "Tereza Caroline das Neves",
+            "data_de_nascimento": "18-05-2000",
+            "bairro": "Lagoa Nova",
+            "sexo": "Feminino",
+            "escolaridade": "Mestrado",
+            "raca": "Preta",
+            "status": "Diagnosticado",
+            "data_abertura": "18-09-2021",
+            "data_encerramento": "21-09-2021"
+        },
+        {
+            "nome": "Thales Vicente Santos",
+            "data_de_nascimento": "08-03-1990",
+            "bairro": "Candelária",
+            "sexo": "Masculino",
+            "escolaridade": "Ensino Fundamental",
+            "raca": "Indígena",
+            "status": "Descartado",
+            "data_abertura": "15-09-2021",
+            "data_encerramento": "16-09-2021"
+        },
+        {
+            "nome": "Filipe Vitor Anderson Silveira",
+            "data_de_nascimento": "27-11-1995",
+            "bairro": "Santa Catarina",
+            "sexo": "Não informado",
+            "escolaridade": "Ensino Médio",
+            "raca": "Parda",
+            "status": "Em tratamento",
+            "data_abertura": "16-09-2021",
+            "data_encerramento": "17-09-2021"
+        },
+        {
+            "nome": "Vera Elisa Moura",
+            "data_de_nascimento": "17-10-1989",
+            "bairro": "Santa Catarina",
+            "sexo": "Feminino",
+            "escolaridade": "Graduação",
+            "raca": "Parda",
+            "status": "Encerrado",
+            "data_abertura": "23-08-2021",
+            "data_encerramento": "24-08-2021"
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "data": {
+        "tratados": 17992,
+        "descartados": 295074,
+        "suspeitos": 28787,
+        "perdidos": 17994,
+        "estratificacao": {
+            "jovens": 35984,
+            "adultos": 251894,
+            "idosos": 71969
+        }
+    }
+}

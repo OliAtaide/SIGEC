@@ -1,0 +1,12 @@
+{
+    "data": [
+        {
+            "perfil": "Médico",
+            "estabelecimento": "UBS Alecrim"
+        },
+        {
+            "perfil": "Enfermeiro",
+            "estabelecimento": "UBS Candelária"
+        }
+    ]
+}
