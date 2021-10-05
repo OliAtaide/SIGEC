@@ -29,4 +29,13 @@ export default {
 .v-main{
   background-color: #F6F6F6;
 }
+.container {
+  width: 64%;
+}
+
+@media only screen and (max-width: 600px) {
+  .container{
+    width: inherit;
+  }
+}
 </style>

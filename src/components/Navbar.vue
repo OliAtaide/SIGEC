@@ -2,7 +2,7 @@
   <v-app-bar color="#0096C7" app>
     <v-app-bar-title>SiGEC</v-app-bar-title>
     <v-spacer></v-spacer>
-    <div>Kelly Gomez</div>
+    <div class="nome">Kelly Gomez</div>
     <v-avatar>
       <v-img src="@/assets/ig.jpg"></v-img>
     </v-avatar>
@@ -41,5 +41,14 @@ export default {};
 }
 .v-avatar {
   border: 0.1em solid white;
+}
+@media only screen and (max-width: 600px) {
+  .v-app-bar{
+    padding-left: inherit;
+    padding-right: inherit;
+  }
+  .nome{
+    display: none;
+  }
 }
 </style>

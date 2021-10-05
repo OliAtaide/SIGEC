@@ -5,15 +5,15 @@
         <h1>Olá, Kelly Gomez</h1>
         <p>Selecione um vínculo</p>
       </v-col>
-      <v-divider></v-divider>
-      <v-col>
+      <v-spacer></v-spacer>
+      <v-col class="add-button">
         Adicione um vínculo
-        <v-btn outlined large fab color="#0096C7"><v-icon> mdi-plus</v-icon></v-btn>
+        <v-btn outlined large fab color="#0096C7" @click="$router.push('dashboard/vinculo/adicionar')"><v-icon> mdi-plus</v-icon></v-btn>
       </v-col>
     </v-row>
     <hr class="mb-5">
     <v-row>
-      <v-col v-for="v in vinculos" :key="v.id" md="4">
+      <v-col v-for="v in vinculos" :key="v.id" md="4" sm="12" cols="12">
         <v-card>
           <v-card-title>
             <v-icon>mdi-briefcase</v-icon>
@@ -56,13 +56,15 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  width: 64%;
-}
 h1{
     font-size: 30px;
 }
 .header{
     color: #0096C7;
+}
+@media only screen and (max-width: 600px) {
+  .add-button, .spacer{
+    display: none !important;
+  }
 }
 </style>

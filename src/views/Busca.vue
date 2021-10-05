@@ -110,9 +110,6 @@ export default {
   padding-left: 18%;
   padding-right: 18%;
 }
-.container {
-  width: 64%;
-}
 .resultado {
   display: flex !important;
 }
