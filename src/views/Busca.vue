@@ -7,11 +7,23 @@
       <v-col>
         <v-row>
           <v-icon>mdi-home-outline</v-icon>
-          <router-link to="dashboard" class="mr-1" href="">Início</router-link>
-          <p class="ma-0">/ Gestão de caso</p>
+          <v-breadcrumbs
+            divider="/"
+            :items="[
+              {
+                text: 'Início',
+                disabled: false,
+                href: '/dashboard',
+              },
+              {
+                text: 'Gestão de caso',
+                disabled: true,
+              },
+            ]"
+          ></v-breadcrumbs>
         </v-row>
-        <v-row>
-          <v-icon>mdi-account-outline</v-icon>
+        <v-row class="mb-5">
+          <v-icon class="mr-5">mdi-account-outline</v-icon>
           <h4>GESTÃO DE CASO</h4>
         </v-row>
         <v-row>
@@ -38,7 +50,13 @@
                 <v-icon left> mdi-magnify</v-icon>
                 Buscar
               </v-btn>
-              <v-btn @click="filtro.visivel = !filtro.visivel" rounded outlined color="#0C109C" class="text-none">
+              <v-btn
+                @click="filtro.visivel = !filtro.visivel"
+                rounded
+                outlined
+                color="#0C109C"
+                class="text-none"
+              >
                 <v-icon left> mdi-filter-outline</v-icon>
                 Filtrar
               </v-btn>
@@ -299,46 +317,84 @@ export default {
           this.casos = casos.filter((caso) => this.filtrarCasos(caso));
         })
         .catch((error) => console.log(error));
-      // this.casos = this.casos.filter((caso) => this.filtrarCasos(caso));
+    },
+
+    formatarData(d, f) {
+      const date = d.split("-");
+      if (f == "dmy") {
+        return new Date(date[2], date[1], date[0]);
+      }
+      return new Date(date[0], date[1], date[2]);
     },
 
     getIdade(d) {
-      const dia = d.slice(0, 2);
-      const mes = d.slice(3, 5);
-      const ano = d.slice(6, 10);
-      const dn = new Date(ano, mes, dia);
+      const dn = this.formatarData(d, "dmy");
       const agora = new Date();
-      const date = Math.abs(dn - agora);
+      const date = Math.abs(agora - dn);
       return parseInt(date / 31536000000);
+    },
+
+    compararDatas(data, filtro) {
+      var dn1 = this.formatarData(data, "dmy");
+      var dn2 = this.formatarData(filtro, "ymd");
+      return dn1.getTime() == dn2.getTime() || filtro == "";
     },
 
     filtrarCasos(caso) {
       var casoNome =
         caso.nome.toLowerCase().includes(this.pesquisa) || this.pesquisa == "";
+
       var casoSexo = caso.sexo == this.filtro.sexo || this.filtro.sexo == "";
+
       var casoEsco =
         caso.escolaridade == this.filtro.escolaridade ||
         this.filtro.escolaridade == "";
+
       var casoRaca = caso.raca == this.filtro.raca || this.filtro.raca == "";
+
       var casoStat =
         caso.status == this.filtro.status || this.filtro.status == "";
 
-      if (casoNome && casoSexo && casoEsco && casoRaca && casoStat) {
+      var casoNasc = this.compararDatas(
+        caso.data_de_nascimento,
+        this.filtro.data_de_nascimento
+      );
+
+      var casoAber = this.compararDatas(
+        caso.data_abertura,
+        this.filtro.data_abertura
+      );
+
+      var casoEnce = this.compararDatas(
+        caso.data_encerramento,
+        this.filtro.data_encerramento
+      );
+
+      if (
+        casoNome &&
+        casoSexo &&
+        casoEsco &&
+        casoRaca &&
+        casoStat &&
+        casoNasc &&
+        casoAber &&
+        casoEnce
+      ) {
         return caso;
       }
     },
 
-    limparFiltro(){
-      this.filtro.data_de_nascimento = '';
-      this.filtro.bairro = '';
-      this.filtro.sexo = '';
-      this.filtro.escolaridade = '';
-      this.filtro.raca = '';
-      this.filtro.status = '';
-      this.filtro.data_abertura = '';
-      this.filtro.data_encerramento = '';
-      console.log('ok');
-    }
+    limparFiltro() {
+      this.filtro.data_de_nascimento = "";
+      this.filtro.bairro = "";
+      this.filtro.sexo = "";
+      this.filtro.escolaridade = "";
+      this.filtro.raca = "";
+      this.filtro.status = "";
+      this.filtro.data_abertura = "";
+      this.filtro.data_encerramento = "";
+      console.log("ok");
+    },
   },
 };
 </script>
@@ -357,7 +413,6 @@ export default {
 .pesquisa {
   width: 10% !important;
 }
-.filtros{
-
+.filtros {
 }
 </style>
