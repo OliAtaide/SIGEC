@@ -1,5 +1,20 @@
 <template>
   <v-container>
+    <!-- <v-overlay :value="true">
+      <v-card light class="ok-card pa-5" width="50vw">
+        <v-btn class="float-right" icon>
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+        <v-sheet class="d-flex flex-column justify-center align-center ">
+          <v-icon color="#03972A" size="7em">
+          mdi-check-circle
+        </v-icon>
+        <v-card-title>
+          Vínculo adicionado com sucesso
+        </v-card-title>
+        </v-sheet>
+      </v-card>
+    </v-overlay> -->
     <v-card width="50%" elevation="0">
       <v-card-title>Adicionar um novo vínculo</v-card-title>
       <v-card-text>

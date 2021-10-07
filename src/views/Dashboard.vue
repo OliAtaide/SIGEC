@@ -1,17 +1,25 @@
 <template>
   <v-container>
+    
     <v-row class="header">
       <v-col>
-        <h1>Olá, Kelly Gomez</h1>
+        <h2>Olá, Kelly Gomez</h2>
         <p>Selecione um vínculo</p>
       </v-col>
       <v-spacer></v-spacer>
       <v-col class="add-button">
         Adicione um vínculo
-        <v-btn outlined large fab color="#0096C7" @click="$router.push('dashboard/vinculo/adicionar')"><v-icon> mdi-plus</v-icon></v-btn>
+        <v-btn
+          outlined
+          large
+          fab
+          color="#0096C7"
+          @click="$router.push('dashboard/vinculo/adicionar')"
+          ><v-icon> mdi-plus</v-icon></v-btn
+        >
       </v-col>
     </v-row>
-    <hr class="mb-5">
+    <hr class="mb-5" />
     <v-row>
       <v-col v-for="v in vinculos" :key="v.id" md="4" sm="12" cols="12">
         <v-card>
@@ -33,7 +41,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   created() {
@@ -41,29 +49,31 @@ export default {
   },
 
   data() {
-    return{
-      vinculos: []
-    }
+    return {
+      vinculos: [],
+    };
   },
 
   methods: {
     getIndicadores() {
-      axios.get('/vinculos')
-      .then(response => this.vinculos = response.data.data)
-    }
-  }
+      axios
+        .get("/vinculos")
+        .then((response) => (this.vinculos = response.data.data));
+    },
+  },
 };
 </script>
 
 <style scoped>
-h1{
-    font-size: 30px;
+h1 {
+  font-size: 30px;
 }
-.header{
-    color: #0096C7;
+.header {
+  color: #0096c7;
 }
 @media only screen and (max-width: 600px) {
-  .add-button, .spacer{
+  .add-button,
+  .spacer {
     display: none !important;
   }
 }

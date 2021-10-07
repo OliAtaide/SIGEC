@@ -1,5 +1,35 @@
 <template>
   <v-sheet class="sheet" width="100%">
+    <!-- <v-overlay :value="true">
+      <v-card light class="ok-card" width="50vw">
+        <v-row class="title ma-0">
+          <v-card-title> Encerramento de caso </v-card-title>
+          <v-spacer></v-spacer>
+          <v-btn dark class="float-right align-self-center" icon>
+            <v-icon>mdi-close-circle-outline</v-icon>
+          </v-btn>
+        </v-row>
+        <v-sheet class="pa-16">
+          <v-subheader class="mb-10 text-center">
+            Você está encerrando o caso, deseja continuar?
+          </v-subheader>
+          <v-row class="">
+            <v-col>
+              <v-btn width="100%" dark color="#9D0208" class="text-none" rounded>
+                <v-icon left> mdi-close </v-icon>
+                Cancelar
+              </v-btn>
+            </v-col>
+            <v-col>
+              <v-btn width="100%" dark color="#E63946" class="text-none" rounded>
+                <v-icon left> mdi-cancel </v-icon>
+                Encerrar o caso
+              </v-btn>
+            </v-col>
+          </v-row>
+        </v-sheet>
+      </v-card>
+    </v-overlay> -->
     <v-sheet width="100%" class="vinculo-label"
       >Estabelecimento de saúde: UBS do Alecrim</v-sheet
     >
@@ -45,7 +75,7 @@
                 rounded
                 dark
                 color="#AFAFAF"
-                class="text-none ml-3 mr-3"
+                class="botao-buscar text-none ml-3 mr-3"
               >
                 <v-icon left> mdi-magnify</v-icon>
                 Buscar
@@ -55,7 +85,7 @@
                 rounded
                 outlined
                 color="#0C109C"
-                class="text-none"
+                class="botao-filtro text-none"
               >
                 <v-icon left> mdi-filter-outline</v-icon>
                 Filtrar
@@ -214,9 +244,9 @@
               </v-card>
             </v-row>
             <v-row v-else class="ma-10">
-              <v-subheader
-                >{{ casos.length }} registros foram encontrados</v-subheader
-              >
+              <v-subheader>
+                {{ casos.length }} registros foram encontrados
+              </v-subheader>
               <v-spacer></v-spacer>
               <v-btn rounded dark color="#0C109C" class="text-none">
                 <v-icon left>mdi-file-export</v-icon>
@@ -231,39 +261,40 @@
                 class="pa-5 resultado mb-5 rounded-lg"
                 outlined
               >
-                <v-sheet>
-                  <p><strong>Nome: </strong>{{ c.nome }}</p>
-                  <!-- <p><strong>CPF: </strong>837.721.519-57</p> -->
-                  <p>
-                    <strong>Idade: </strong>{{ getIdade(c.data_de_nascimento) }}
-                  </p>
-                  <p><strong>Bairro: </strong>{{ c.bairro }}</p>
-                  <p><strong>Status: </strong>{{ c.status }}</p>
-                </v-sheet>
-                <v-spacer></v-spacer>
-                <v-col
-                  class="flex-grow-0 d-flex flex-column justify-space-around"
-                >
-                  <v-row class="ma-0">
-                    <v-btn rounded dark class="text-none" color="#0C109C"
-                      ><v-icon left>mdi-eye-outline</v-icon> Visualizar
-                      detalhes</v-btn
-                    >
-                  </v-row>
-                  <v-row>
-                    <v-sheet></v-sheet>
-                  </v-row>
-                  <v-row class="ma-0">
+                <v-row>
+                  <v-col cols="12" sm="6">
+                    <v-sheet>
+                      <p><strong>Nome: </strong>{{ c.nome }}</p>
+                      <p>
+                        <strong>Idade: </strong>
+                        {{ getIdade(c.data_de_nascimento) }}
+                      </p>
+                      <p><strong>Bairro: </strong>{{ c.bairro }}</p>
+                      <p><strong>Status: </strong>{{ c.status }}</p>
+                    </v-sheet>
+                    <v-spacer></v-spacer>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    class="flex-grow-0 d-flex flex-column justify-space-around"
+                  >
+                    <v-btn rounded dark class="text-none" color="#0C109C">
+                      <v-icon left>mdi-eye-outline</v-icon>
+                      Visualizar detalhes
+                    </v-btn>
                     <v-btn
                       width="100%"
                       rounded
                       dark
                       class="text-none"
                       color="#E63946"
-                      ><v-icon left>mdi-cancel</v-icon>Encerrar o caso</v-btn
                     >
-                  </v-row>
-                </v-col>
+                      <v-icon left>mdi-cancel</v-icon>
+                      Encerrar o caso
+                    </v-btn>
+                  </v-col>
+                </v-row>
               </v-card>
             </v-row>
           </v-card>
@@ -413,6 +444,20 @@ export default {
 .pesquisa {
   width: 10% !important;
 }
-.filtros {
+.title {
+  background-color: #0096c7;
+  color: white;
+}
+@media only screen and (max-width: 600px) {
+  .pesquisa {
+    width: 100% !important;
+  }
+  .botao-buscar {
+    margin: 0 !important;
+  }
+  .botao-buscar,
+  .botao-filtro {
+    width: 50%;
+  }
 }
 </style>

@@ -37,9 +37,9 @@
                 </v-card-title>
               </v-row>
               <v-row class="ma-0">
-                <v-card-text width="100%" class="text-right pr-0"
-                  >Casos tratados</v-card-text
-                >
+                <v-card-text width="100%" class="text-right pr-0">
+                  Casos tratados
+                </v-card-text>
               </v-row>
             </v-card>
           </v-row>
@@ -59,9 +59,9 @@
                 </v-card-title>
               </v-row>
               <v-row class="ma-0">
-                <v-card-text width="100%" class="text-right pr-0"
-                  >Casos suspeitos</v-card-text
-                >
+                <v-card-text width="100%" class="text-right pr-0">
+                  Casos suspeitos
+                </v-card-text>
               </v-row>
             </v-card>
           </v-row>
@@ -83,9 +83,9 @@
                 </v-card-title>
               </v-row>
               <v-row class="ma-0">
-                <v-card-text width="100%" class="text-right pr-0"
-                  >Casos descartados</v-card-text
-                >
+                <v-card-text width="100%" class="text-right pr-0">
+                  Casos descartados
+                </v-card-text>
               </v-row>
             </v-card>
           </v-row>
@@ -105,9 +105,9 @@
                 </v-card-title>
               </v-row>
               <v-row class="ma-0">
-                <v-card-text width="100%" class="text-right pr-0"
-                  >Casos perdidos</v-card-text
-                >
+                <v-card-text width="100%" class="text-right pr-0">
+                  Casos perdidos
+                </v-card-text>
               </v-row>
             </v-card>
           </v-row>
@@ -128,9 +128,9 @@
               </v-card-title>
             </v-row>
             <v-row class="ma-0">
-              <v-card-text width="100%" class="text-right pr-0"
-                >Casos de covid</v-card-text
-              >
+              <v-card-text width="100%" class="text-right pr-0">
+                Casos de covid
+              </v-card-text>
             </v-row>
             <v-card-text class="pa-0 d-flex">
               <p>Jovem (0-19 anos)</p>
@@ -187,8 +187,11 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  background-color: white;
+}
 .sheet {
-  height: 100vh;
+  min-height: 100vh;
   overflow: hidden;
   background-image: url("~@/assets/bg.png");
   background-position: top;
@@ -222,6 +225,9 @@ header {
 @media only screen and (max-width: 600px) {
   body {
     background-color: lightblue;
+  }
+  .container {
+    margin: 1em;
   }
 }
 </style>
