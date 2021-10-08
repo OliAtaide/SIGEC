@@ -22,7 +22,7 @@
       </template>
       <v-list dense class="d-flex flex-column align-end">
         <v-list-item>
-          <router-link to="/dashboard/vinculo/adicionar">Adicionar um vínculo</router-link>
+          <router-link to="/adicionar-vinculo">Adicionar um vínculo</router-link>
         </v-list-item>
         <v-list-item>
           <router-link to="/dashboard">Meu perfil</router-link>

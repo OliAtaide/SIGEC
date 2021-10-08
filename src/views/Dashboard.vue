@@ -13,7 +13,7 @@
           large
           fab
           color="#0096C7"
-          to="dashboard/vinculo/adicionar"
+          to="adicionar-vinculo"
         >
           <v-icon> mdi-plus</v-icon>
         </v-btn>

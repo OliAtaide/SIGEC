@@ -20,7 +20,7 @@ const routes = [
     component: Dashboard
   },
   {
-    path: '/dashboard/vinculo/adicionar',
+    path: '/adicionar-vinculo',
     name: 'AdicionarVinculo',
     component: AdicionarVinculo
   },

@@ -1,8 +1,8 @@
 <template>
   <v-container>
-    <!-- <v-overlay :value="true">
+    <v-overlay :value="overlay">
       <v-card light class="ok-card pa-5" width="50vw">
-        <v-btn class="float-right" icon>
+        <v-btn to="dashboard" class="float-right" icon>
           <v-icon>mdi-close</v-icon>
         </v-btn>
         <v-sheet class="d-flex flex-column justify-center align-center ">
@@ -14,7 +14,7 @@
         </v-card-title>
         </v-sheet>
       </v-card>
-    </v-overlay> -->
+    </v-overlay>
     <v-card width="50%" elevation="0">
       <v-card-title>Adicionar um novo vínculo</v-card-title>
       <v-card-text>
@@ -60,7 +60,7 @@
                 rounded
                 color="#C82929"
                 class="text-none white--text"
-                to="../../dashboard"
+                to="dashboard"
               >
                 <v-icon left> mdi-close-circle-outline</v-icon>
                 Cancelar
@@ -83,6 +83,7 @@ export default {
     return {
       perfil: "",
       estabelecimento: "",
+      overlay: false,
     };
   },
 
@@ -98,7 +99,7 @@ export default {
         .catch((error) => console.log(error));
 
       this.$store.commit("setVinculo", formData);
-      this.$router.push("../../dashboard");
+      this.overlay = true;
     },
   },
 };

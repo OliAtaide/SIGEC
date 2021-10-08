@@ -14,8 +14,10 @@ export default {
   components: { Navbar },
   name: 'App',
 
-  created(){
+  beforeCreate(){
+    this.$store.dispatch('getCasos');
     this.$store.dispatch('getVinculos');
+    console.log(this.$store.state.casos);
   },
 
   data: () => ({

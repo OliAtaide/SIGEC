@@ -8,18 +8,25 @@ export default new Vuex.Store({
   state: {
     isAuthenticated: false,
     vinculos: [],
+    casos: [],
   },
   mutations: {
     setVinculos: (state, vinculos) => (state.vinculos = vinculos),
-    setVinculo: (state, vinculo) => (state.vinculos.push(vinculo))
+    setVinculo: (state, vinculo) => (state.vinculos.push(vinculo)),
+    setCasos: (state, casos) => (state.casos = casos),
   },
   actions: {
     async getVinculos({ commit }) {
-      const response = await axios
-        .get("/vinculos");
+      const response = await axios.get("/vinculos");
 
-      commit('setVinculos', response.data.data)
+      commit('setVinculos', response.data.data);
     },
+
+    async getCasos({ commit }) {
+      const response = await axios.get("/casos");
+
+      commit('setCasos', response.data.data);
+    }
   },
   modules: {
   }

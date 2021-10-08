@@ -1,6 +1,6 @@
 <template>
   <v-sheet class="sheet" width="100%">
-    <!-- <v-overlay :value="true">
+    <v-overlay :value="overlay">
       <v-card light class="ok-card" width="50vw">
         <v-row class="title ma-0">
           <v-card-title> Encerramento de caso </v-card-title>
@@ -15,13 +15,27 @@
           </v-subheader>
           <v-row class="">
             <v-col>
-              <v-btn width="100%" dark color="#9D0208" class="text-none" rounded>
+              <v-btn
+                @click="overlay = false"
+                width="100%"
+                dark
+                color="#9D0208"
+                class="text-none"
+                rounded
+              >
                 <v-icon left> mdi-close </v-icon>
                 Cancelar
               </v-btn>
             </v-col>
             <v-col>
-              <v-btn width="100%" dark color="#E63946" class="text-none" rounded>
+              <v-btn
+                @click="encerrarCaso"
+                width="100%"
+                dark
+                color="#E63946"
+                class="text-none"
+                rounded
+              >
                 <v-icon left> mdi-cancel </v-icon>
                 Encerrar o caso
               </v-btn>
@@ -29,7 +43,7 @@
           </v-row>
         </v-sheet>
       </v-card>
-    </v-overlay> -->
+    </v-overlay>
     <v-sheet width="100%" class="vinculo-label"
       >Estabelecimento de saúde: UBS do Alecrim</v-sheet
     >
@@ -66,7 +80,6 @@
                 dense
                 outlined
                 rounded
-                clearable
                 @submit.prevent="buscaCasos"
               >
               </v-text-field>
@@ -124,16 +137,6 @@
                       ></v-select>
                     </v-col>
                     <v-col cols="12" md="4" class="py-0">
-                      <v-subheader>Nome da mãe</v-subheader>
-                      <v-text-field
-                        placeholder="Ex.: Maria da Silva"
-                        rounded
-                        outlined
-                        dense
-                        hide-details
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" md="4" class="py-0">
                       <v-subheader>Bairro</v-subheader>
                       <v-text-field
                         rounded
@@ -150,7 +153,13 @@
                         outlined
                         dense
                         hide-details
-                        :items="['', 'fundamental', 'medio', 'superior']"
+                        :items="[
+                          '',
+                          'Ensino Fundamental',
+                          'Ensino Médio',
+                          'Graduação',
+                          'Mestrado',
+                        ]"
                         v-model="filtro.escolaridade"
                       ></v-select>
                     </v-col>
@@ -255,8 +264,8 @@
             </v-row>
             <v-row class="ma-10">
               <v-card
-                v-for="c in casos"
-                :key="c.nome"
+                v-for="(c, i) in casos"
+                :key="i"
                 width="100%"
                 class="pa-5 resultado mb-5 rounded-lg"
                 outlined
@@ -289,6 +298,10 @@
                       dark
                       class="text-none"
                       color="#E63946"
+                      @click="
+                        overlay = true;
+                        index = i;
+                      "
                     >
                       <v-icon left>mdi-cancel</v-icon>
                       Encerrar o caso
@@ -329,6 +342,8 @@ export default {
         data_abertura: "",
         data_encerramento: "",
       },
+      overlay: false,
+      index: null,
     };
   },
 
@@ -340,14 +355,24 @@ export default {
         .catch((error) => console.log(error));
     },
 
+    encerrarCaso() {
+      this.casos[this.index].status = "Encerrado";
+      this.$store.commit("setCasos", this.casos);
+      this.overlay = false;
+    },
+
     buscaCasos() {
-      axios
-        .get("/casos")
-        .then((response) => {
-          var casos = response.data.data;
-          this.casos = casos.filter((caso) => this.filtrarCasos(caso));
-        })
-        .catch((error) => console.log(error));
+      // axios
+      //   .get("/casos")
+      //   .then((response) => {
+      //     var casos = response.data.data;
+      //     casos = casos.filter((caso) => this.filtrarCasos(caso));
+      //     this.$store.commit("setCasos", casos);
+      //   })
+      //   .catch((error) => console.log(error));
+      var casos = this.$store.state.casos;
+      this.casos = casos.filter((caso) => this.filtrarCasos(caso));
+      console.log(this.casos);
     },
 
     formatarData(d, f) {
@@ -375,13 +400,16 @@ export default {
       var casoNome =
         caso.nome.toLowerCase().includes(this.pesquisa) || this.pesquisa == "";
 
+      var casoBair =
+        caso.bairro.toLowerCase().includes(this.filtro.bairro) || this.filtro.bairro == "";
+
+      var casoRaca =
+        caso.raca.toLowerCase().includes(this.filtro.raca) || this.filtro.raca == "";
+
       var casoSexo = caso.sexo == this.filtro.sexo || this.filtro.sexo == "";
 
       var casoEsco =
-        caso.escolaridade == this.filtro.escolaridade ||
-        this.filtro.escolaridade == "";
-
-      var casoRaca = caso.raca == this.filtro.raca || this.filtro.raca == "";
+        caso.escolaridade == this.filtro.escolaridade || this.filtro.escolaridade == "";
 
       var casoStat =
         caso.status == this.filtro.status || this.filtro.status == "";
@@ -403,6 +431,7 @@ export default {
 
       if (
         casoNome &&
+        casoBair &&
         casoSexo &&
         casoEsco &&
         casoRaca &&
@@ -424,7 +453,7 @@ export default {
       this.filtro.status = "";
       this.filtro.data_abertura = "";
       this.filtro.data_encerramento = "";
-      console.log("ok");
+      this.buscaCasos();
     },
   },
 };
