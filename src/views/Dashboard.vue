@@ -1,6 +1,5 @@
 <template>
   <v-container>
-    
     <v-row class="header">
       <v-col>
         <h2>Olá, Kelly Gomez</h2>
@@ -14,14 +13,21 @@
           large
           fab
           color="#0096C7"
-          @click="$router.push('dashboard/vinculo/adicionar')"
-          ><v-icon> mdi-plus</v-icon></v-btn
+          to="dashboard/vinculo/adicionar"
         >
+          <v-icon> mdi-plus</v-icon>
+        </v-btn>
       </v-col>
     </v-row>
     <hr class="mb-5" />
     <v-row>
-      <v-col v-for="v in vinculos" :key="v.id" md="4" sm="12" cols="12">
+      <v-col
+        v-for="v in $store.state.vinculos"
+        :key="v.id"
+        md="4"
+        sm="12"
+        cols="12"
+      >
         <v-card>
           <v-card-title>
             <v-icon>mdi-briefcase</v-icon>
@@ -32,7 +38,9 @@
             {{ v.estabelecimento }}
           </v-card-subtitle>
           <v-card-actions>
-            <v-btn dark color="#0C109C" block rounded> Acessar </v-btn>
+            <v-btn to="busca" dark color="#0C109C" block rounded>
+              Acessar
+            </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -41,25 +49,13 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 
 export default {
-  created() {
-    this.getIndicadores();
-  },
-
   data() {
     return {
       vinculos: [],
     };
-  },
-
-  methods: {
-    getIndicadores() {
-      axios
-        .get("/vinculos")
-        .then((response) => (this.vinculos = response.data.data));
-    },
   },
 };
 </script>

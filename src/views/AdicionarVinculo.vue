@@ -25,7 +25,9 @@
             rounded
             outlined
             color="#0086B2"
+            :rules="v => !!v || 'Name is required'"
             v-model="perfil"
+            required
           >
           </v-text-field>
           <v-text-field
@@ -35,6 +37,7 @@
             outlined
             color="#0086B2"
             v-model="estabelecimento"
+            required
           >
           </v-text-field>
           <v-row>
@@ -44,8 +47,8 @@
                 block
                 rounded
                 color="#0C109C"
-                class="text-none"
-                dark
+                class="text-none white--text"
+                :disabled="perfil == '' || estabelecimento == ''"
               >
                 <v-icon left> mdi-plus-circle-outline</v-icon>
                 Adicionar vínculo
@@ -56,9 +59,8 @@
                 block
                 rounded
                 color="#C82929"
-                class="text-none"
-                dark
-                @click="$router.push('..')"
+                class="text-none white--text"
+                to="../../dashboard"
               >
                 <v-icon left> mdi-close-circle-outline</v-icon>
                 Cancelar
@@ -91,9 +93,12 @@ export default {
         estabelecimento: this.estabelecimento,
       };
       axios
-        .post("vinculo", formData)
+        .post("vinculos", formData)
         .then((response) => console.log(response))
         .catch((error) => console.log(error));
+
+      this.$store.commit("setVinculo", formData);
+      this.$router.push("../../dashboard");
     },
   },
 };
@@ -103,7 +108,7 @@ export default {
 .v-card__title {
   color: #0c109c;
 }
-.container{
+.container {
   background-color: white;
 }
 @media only screen and (max-width: 600px) {
