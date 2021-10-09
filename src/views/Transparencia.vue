@@ -20,7 +20,7 @@
         <v-spacer></v-spacer>
       </v-row>
       <v-row>
-        <v-col cols="12" sm="4">
+        <v-col cols="12" md="4">
           <v-row class="ma-0 mb-6">
             <v-card width="100%" class="pa-5 white--text" color="#0C109C">
               <v-row class="ma-0">
@@ -66,7 +66,7 @@
             </v-card>
           </v-row>
         </v-col>
-        <v-col cols="12" sm="4">
+        <v-col cols="12" md="4">
           <v-row class="ma-0 mb-6">
             <v-card width="100%" class="pa-5 card-green" outlined>
               <v-row class="ma-0">

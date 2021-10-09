@@ -2,25 +2,9 @@
   <v-container>
     <v-row class="header ma-0">
       <div>
-        <h2>Olá, Kelly Gomez</h2>
-        <p>Selecione um vínculo</p>
-      </div>
-      <v-spacer></v-spacer>
-      <div class="d-md-flex d-none align-center float-right">
-        Adicione um vínculo
-        <v-btn
-        class="ml-3"
-          outlined
-          large
-          fab
-          color="#0096C7"
-          to="adicionar-vinculo"
-        >
-          <v-icon> mdi-plus</v-icon>
-        </v-btn>
+        <h2>Meu Perfil - Kelly Gomez</h2>
       </div>
     </v-row>
-    <hr class="mb-5" />
     <v-row>
       <v-col
         v-for="(v, i) in $store.state.vinculos"

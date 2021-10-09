@@ -5,6 +5,7 @@ import Dashboard from '../views/Dashboard.vue'
 import Transparencia from '../views/Transparencia.vue'
 import Busca from '../views/Busca.vue'
 import AdicionarVinculo from '../views/AdicionarVinculo.vue'
+import Perfil from '../views/Perfil.vue'
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,11 @@ const routes = [
     path: '/:id/busca',
     name: 'Busca',
     component: Busca
+  },
+  {
+    path: '/perfil',
+    name: 'Perfil',
+    component: Perfil
   }
 ]
 

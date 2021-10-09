@@ -13,7 +13,10 @@ export default new Vuex.Store({
   mutations: {
     setVinculos: (state, vinculos) => (state.vinculos = vinculos),
     setVinculo: (state, vinculo) => (state.vinculos.push(vinculo)),
+
     setCasos: (state, casos) => (state.casos = casos),
+    setCaso: (state, caso, index) => (state.casos[index] = caso),
+    
     authenticate: (state) => (state.isAuthenticated = true),
     logout: (state) => (state.isAuthenticated = false)
   },

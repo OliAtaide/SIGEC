@@ -42,13 +42,13 @@
         </v-sheet>
       </v-card>
     </v-overlay>
-    <v-sheet width="100%" class="vinculo-label">
+    <v-sheet width="100%" class="vinculo-label d-none d-md-flex ">
       <strong>Estabelecimento de saúde:</strong>
       {{ vinculo.estabelecimento }}
     </v-sheet>
     <v-container>
       <v-col>
-        <v-row>
+        <v-row class="d-none d-md-flex">
           <v-icon>mdi-home-outline</v-icon>
           <v-breadcrumbs
             divider="/"
@@ -64,6 +64,12 @@
               },
             ]"
           ></v-breadcrumbs>
+        </v-row>
+        <v-row class="mb-5">
+          <v-btn to="/dashboard" class="botao-voltar text-none d-flex d-md-none" text rounded>
+            <v-icon>mdi-chevron-left</v-icon>
+            Voltar
+          </v-btn>
         </v-row>
         <v-row class="mb-5">
           <v-icon class="mr-5">mdi-account-outline</v-icon>
@@ -253,7 +259,7 @@
                 {{ casos.length }} registros foram encontrados
               </v-subheader>
               <v-spacer></v-spacer>
-              <v-btn rounded color="#0C109C" class="text-none white--text">
+              <v-btn rounded color="#0C109C" class="botao-exportar text-none white--text">
                 <v-icon left>mdi-file-export</v-icon>
                 Exportar
               </v-btn>
@@ -267,7 +273,7 @@
                 outlined
               >
                 <v-row>
-                  <v-col cols="12" sm="6">
+                  <v-col cols="12" md="6">
                     <v-sheet>
                       <p><strong>Nome: </strong>{{ c.nome }}</p>
                       <p>
@@ -281,7 +287,7 @@
                   </v-col>
                   <v-col
                     cols="12"
-                    sm="6"
+                    md="6"
                     class="flex-grow-0 d-flex flex-column justify-space-around"
                   >
                     <v-btn rounded class="text-none white--text" color="#0C109C">
@@ -324,8 +330,9 @@ export default {
   name: "Busca",
 
   created() {
-    this.getVinculo();
-    this.fetchCasos();
+    this.casos = this.$store.state.casos;
+     this.getVinculo();
+  //   this.fetchCasos();
   },
 
   data() {
@@ -351,11 +358,14 @@ export default {
 
   methods: {
     getVinculo() {
-      axios.get("/vinculos").then((response) => {
-        var vinculos = response.data.data;
-        var i = this.$route.params.id;
-        this.vinculo = vinculos[i];
-      });
+      // axios.get("/vinculos").then((response) => {
+      //   var vinculos = response.data.data;
+      //   var i = this.$route.params.id;
+      //   this.vinculo = vinculos[i];
+      // });
+      var vinculos = this.$store.state.vinculos;
+      var i = this.$route.params.id;
+      this.vinculo = vinculos[i];
     },
 
     fetchCasos() {
@@ -366,15 +376,15 @@ export default {
     },
 
     encerrarCaso() {
-      this.casos[this.index].status = "Encerrado";
-      this.$store.commit("setCasos", this.casos);
+      var caso = this.casos[this.index]
+      caso.status = "Encerrado";
+      this.$store.commit("setCaso", caso, this.index);
       this.overlay = false;
     },
 
     buscaCasos() {
       var casos = this.$store.state.casos;
       this.casos = casos.filter((caso) => this.filtrarCasos(caso));
-      console.log(this.casos);
     },
 
     formatarData(d, f) {
@@ -403,11 +413,13 @@ export default {
         caso.nome.toLowerCase().includes(this.pesquisa) || this.pesquisa == "";
 
       var casoBair =
-        caso.bairro.toLowerCase().includes(this.filtro.bairro) ||
+        caso.bairro.toLowerCase().normalize("NFD").replace(/[^a-zA-Zs]/g, "")
+        .includes(this.filtro.bairro.normalize("NFD").replace(/[^a-zA-Zs]/g, "")) ||
         this.filtro.bairro == "";
 
       var casoRaca =
-        caso.raca.toLowerCase().includes(this.filtro.raca) ||
+        caso.raca.toLowerCase().normalize("NFD").replace(/[^a-zA-Zs]/g, "")
+        .includes(this.filtro.raca.normalize("NFD").replace(/[^a-zA-Zs]/g, "")) ||
         this.filtro.raca == "";
 
       var casoSexo = caso.sexo == this.filtro.sexo || this.filtro.sexo == "";
@@ -465,6 +477,9 @@ export default {
 </script>
 
 <style scoped>
+.botao-voltar {
+  color: #FCA311;
+}
 .vinculo-label {
   padding-left: 19%;
   padding-right: 19%;
@@ -491,7 +506,7 @@ export default {
     padding-left: 1%;
     padding-right: 1%;
   }
-  .pesquisa {
+  .pesquisa, .botao-exportar {
     width: 100% !important;
   }
   .botao-buscar {

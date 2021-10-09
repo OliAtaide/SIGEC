@@ -17,7 +17,19 @@ export default {
   beforeCreate(){
     this.$store.dispatch('getCasos');
     this.$store.dispatch('getVinculos');
-    console.log(this.$store.state.casos);
+  },
+
+  created(){
+    this.checkAuth();
+  },
+
+  methods:{
+    checkAuth(){
+      var pag = this.$route.name != 'Login' && this.$route.name != 'Transparencia';
+      if(pag && !this.$store.state.isAuthenticated){
+        this.$router.push({name: 'Login'});
+      }
+    }
   },
   
   data: () => ({
