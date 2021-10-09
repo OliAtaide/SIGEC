@@ -5,7 +5,7 @@
         <v-row class="title ma-0">
           <v-card-title> Encerramento de caso </v-card-title>
           <v-spacer></v-spacer>
-          <v-btn dark class="float-right align-self-center" icon>
+          <v-btn class="float-right align-self-center white--text" icon>
             <v-icon>mdi-close-circle-outline</v-icon>
           </v-btn>
         </v-row>
@@ -18,9 +18,8 @@
               <v-btn
                 @click="overlay = false"
                 width="100%"
-                dark
                 color="#9D0208"
-                class="text-none"
+                class="text-none white--text"
                 rounded
               >
                 <v-icon left> mdi-close </v-icon>
@@ -31,9 +30,8 @@
               <v-btn
                 @click="encerrarCaso"
                 width="100%"
-                dark
                 color="#E63946"
-                class="text-none"
+                class="text-none white--text"
                 rounded
               >
                 <v-icon left> mdi-cancel </v-icon>
@@ -44,9 +42,10 @@
         </v-sheet>
       </v-card>
     </v-overlay>
-    <v-sheet width="100%" class="vinculo-label"
-      >Estabelecimento de saúde: UBS do Alecrim</v-sheet
-    >
+    <v-sheet width="100%" class="vinculo-label">
+      <strong>Estabelecimento de saúde:</strong>
+      {{ vinculo.estabelecimento }}
+    </v-sheet>
     <v-container>
       <v-col>
         <v-row>
@@ -57,7 +56,7 @@
               {
                 text: 'Início',
                 disabled: false,
-                href: '/dashboard',
+                to: '/dashboard',
               },
               {
                 text: 'Gestão de caso',
@@ -86,9 +85,8 @@
               <v-btn
                 @click="buscaCasos()"
                 rounded
-                dark
                 color="#AFAFAF"
-                class="botao-buscar text-none ml-3 mr-3"
+                class="botao-buscar text-none ml-3 mr-3 white--text"
               >
                 <v-icon left> mdi-magnify</v-icon>
                 Buscar
@@ -217,20 +215,18 @@
                     <v-col
                       ><v-btn
                         @click="limparFiltro()"
-                        dark
                         rounded
                         color="#FCA311"
-                        class="text-none mr-5"
+                        class="text-none mr-5 white--text"
                       >
                         <v-icon left>mdi-eraser</v-icon>
                         Limpar
                       </v-btn>
                       <v-btn
                         @click="buscaCasos()"
-                        dark
                         rounded
                         color="#0C109C"
-                        class="text-none"
+                        class="text-none white--text"
                       >
                         <v-icon left>mdi-magnify</v-icon>
                         Buscar
@@ -257,7 +253,7 @@
                 {{ casos.length }} registros foram encontrados
               </v-subheader>
               <v-spacer></v-spacer>
-              <v-btn rounded dark color="#0C109C" class="text-none">
+              <v-btn rounded color="#0C109C" class="text-none white--text">
                 <v-icon left>mdi-file-export</v-icon>
                 Exportar
               </v-btn>
@@ -288,15 +284,14 @@
                     sm="6"
                     class="flex-grow-0 d-flex flex-column justify-space-around"
                   >
-                    <v-btn rounded dark class="text-none" color="#0C109C">
+                    <v-btn rounded class="text-none white--text" color="#0C109C">
                       <v-icon left>mdi-eye-outline</v-icon>
                       Visualizar detalhes
                     </v-btn>
                     <v-btn
                       width="100%"
                       rounded
-                      dark
-                      class="text-none"
+                      class="text-none white--text"
                       color="#E63946"
                       @click="
                         overlay = true;
@@ -310,6 +305,11 @@
                 </v-row>
               </v-card>
             </v-row>
+            <!-- <v-pagination
+              :length="1"
+              circle
+            >
+            </v-pagination> -->
           </v-card>
         </v-row>
       </v-col>
@@ -324,11 +324,13 @@ export default {
   name: "Busca",
 
   created() {
+    this.getVinculo();
     this.fetchCasos();
   },
 
   data() {
     return {
+      vinculo: "",
       casos: [],
       pesquisa: "",
       filtro: {
@@ -348,6 +350,14 @@ export default {
   },
 
   methods: {
+    getVinculo() {
+      axios.get("/vinculos").then((response) => {
+        var vinculos = response.data.data;
+        var i = this.$route.params.id;
+        this.vinculo = vinculos[i];
+      });
+    },
+
     fetchCasos() {
       axios
         .get("/casos")
@@ -362,14 +372,6 @@ export default {
     },
 
     buscaCasos() {
-      // axios
-      //   .get("/casos")
-      //   .then((response) => {
-      //     var casos = response.data.data;
-      //     casos = casos.filter((caso) => this.filtrarCasos(caso));
-      //     this.$store.commit("setCasos", casos);
-      //   })
-      //   .catch((error) => console.log(error));
       var casos = this.$store.state.casos;
       this.casos = casos.filter((caso) => this.filtrarCasos(caso));
       console.log(this.casos);
@@ -401,15 +403,18 @@ export default {
         caso.nome.toLowerCase().includes(this.pesquisa) || this.pesquisa == "";
 
       var casoBair =
-        caso.bairro.toLowerCase().includes(this.filtro.bairro) || this.filtro.bairro == "";
+        caso.bairro.toLowerCase().includes(this.filtro.bairro) ||
+        this.filtro.bairro == "";
 
       var casoRaca =
-        caso.raca.toLowerCase().includes(this.filtro.raca) || this.filtro.raca == "";
+        caso.raca.toLowerCase().includes(this.filtro.raca) ||
+        this.filtro.raca == "";
 
       var casoSexo = caso.sexo == this.filtro.sexo || this.filtro.sexo == "";
 
       var casoEsco =
-        caso.escolaridade == this.filtro.escolaridade || this.filtro.escolaridade == "";
+        caso.escolaridade == this.filtro.escolaridade ||
+        this.filtro.escolaridade == "";
 
       var casoStat =
         caso.status == this.filtro.status || this.filtro.status == "";
@@ -461,8 +466,12 @@ export default {
 
 <style scoped>
 .vinculo-label {
-  padding-left: 18%;
-  padding-right: 18%;
+  padding-left: 19%;
+  padding-right: 19%;
+  font-size: 14px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid lightgray;
 }
 .sheet {
   background-color: inherit !important;
@@ -477,7 +486,11 @@ export default {
   background-color: #0096c7;
   color: white;
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 960px) {
+  .vinculo-label{
+    padding-left: 1%;
+    padding-right: 1%;
+  }
   .pesquisa {
     width: 100% !important;
   }
@@ -487,6 +500,10 @@ export default {
   .botao-buscar,
   .botao-filtro {
     width: 50%;
+  }
+  .resultado .v-btn{
+    margin-top: 1em;
+    margin-bottom: 1em;
   }
 }
 </style>

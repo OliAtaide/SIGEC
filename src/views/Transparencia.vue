@@ -22,7 +22,7 @@
       <v-row>
         <v-col cols="12" sm="4">
           <v-row class="ma-0 mb-6">
-            <v-card width="100%" class="pa-5" color="#0C109C" dark>
+            <v-card width="100%" class="pa-5 white--text" color="#0C109C">
               <v-row class="ma-0">
                 <v-sheet
                   width="inherit"
@@ -222,7 +222,7 @@ header {
   border: 1px solid #3e86ab !important;
   color: #3e86ab;
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 960px) {
   body {
     background-color: lightblue;
   }

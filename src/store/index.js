@@ -14,6 +14,8 @@ export default new Vuex.Store({
     setVinculos: (state, vinculos) => (state.vinculos = vinculos),
     setVinculo: (state, vinculo) => (state.vinculos.push(vinculo)),
     setCasos: (state, casos) => (state.casos = casos),
+    authenticate: (state) => (state.isAuthenticated = true),
+    logout: (state) => (state.isAuthenticated = false)
   },
   actions: {
     async getVinculos({ commit }) {

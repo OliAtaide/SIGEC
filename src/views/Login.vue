@@ -1,7 +1,7 @@
 <template>
   <v-sheet class="sheet d-flex" block d-flex fixed>
     <v-row>
-      <v-col class="brand d-none d-sm-flex">
+      <v-col class="brand d-none d-md-flex">
         <v-sheet>
           <h1>SiGEC</h1>
           <h3>Sistema de gestão de casos</h3>
@@ -19,8 +19,8 @@
       </v-col>
       <v-col>
         <v-card height="90%" class="pa-10">
-          <div class="d-flex flex-column d-sm-none">
-            <v-card-title class="title">SIGEC</v-card-title>
+          <div class="d-flex flex-column d-md-none">
+            <v-card-title class="title text-center justify-center">SiGEC</v-card-title>
             <v-divider></v-divider>
           </div>
           <v-form v-if="login" @submit.prevent="submitForm">
@@ -48,9 +48,8 @@
               v-model="password"
             ></v-text-field>
             <v-btn
-              class="text-none"
+              class="text-none white--text"
               type="submit"
-              dark
               color="#0C109C"
               block
               rounded
@@ -129,9 +128,8 @@
               dense
             ></v-text-field>
             <v-btn
-              class="text-none"
+              class="text-none white--text"
               type="submit"
-              dark
               color="#0C109C"
               block
               rounded
@@ -156,7 +154,7 @@
             block
             rounded
             outlined
-            class="text-none d-flex d-sm-none"
+            class="text-none d-flex d-md-none"
           >
             Acessar transparência
           </v-btn>
@@ -207,7 +205,8 @@ export default {
         .post("auth/login", formData)
         .then((response) => {
           console.log(response.data);
-          this.$store.state.isAuthenticated = true;
+          this.$store.commit('authenticate');
+          this.$router.push('dashboard');
         })
         .catch((error) => console.log(error));
     },
@@ -258,7 +257,7 @@ input {
   padding: 0 !important;
   margin: 0 !important;
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 960px) {
   .v-card {
     margin: 1em;
     width: auto;

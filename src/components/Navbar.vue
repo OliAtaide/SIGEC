@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar dark color="#0096C7" app>
+  <v-app-bar class="white--text" color="#0096C7" app>
     <v-app-bar-title>
       <router-link
         height="100%"
@@ -10,10 +10,16 @@
       </router-link>
     </v-app-bar-title>
     <v-spacer></v-spacer>
-    <div class="nome">Kelly Gomez</div>
-    <v-menu content-class="rounded-xl">
+    <v-menu content-class="rounded-xl" offset-y>
       <template v-slot:activator="{ on, attrs }">
-        <v-btn class="elevation-0" rounded color="transparent" dark v-bind="attrs" v-on="on">
+        <v-btn
+          class="elevation-0 text-none white--text"
+          rounded
+          color="transparent"
+          v-bind="attrs"
+          v-on="on"
+        >
+          <div class="nome mr-3">Kelly Gomez</div>
           <v-avatar size="36">
             <v-img src="@/assets/ig.jpg"></v-img>
           </v-avatar>
@@ -22,13 +28,19 @@
       </template>
       <v-list dense class="d-flex flex-column align-end">
         <v-list-item>
-          <router-link to="/adicionar-vinculo">Adicionar um vínculo</router-link>
+          <router-link
+            class="text-decoration-none black--text"
+            to="/adicionar-vinculo"
+            >Adicionar um vínculo</router-link
+          >
         </v-list-item>
         <v-list-item>
-          <router-link to="/dashboard">Meu perfil</router-link>
+          <router-link class="text-decoration-none black--text" to="/dashboard"
+            >Meu perfil</router-link
+          >
         </v-list-item>
         <v-list-item>
-          <a @click="logout()">Sair</a>
+          <a class="text-decoration-none black--text" @click="logout()">Sair</a>
         </v-list-item>
       </v-list>
     </v-menu>
@@ -36,7 +48,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    logout() {
+      this.$store.commit("logout");
+      this.$router.push("/");
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -52,7 +71,10 @@ export default {};
   color: white;
   font-size: 2em;
 }
-@media only screen and (max-width: 600px) {
+.v-list {
+  font-size: 14px !important;
+}
+@media only screen and (max-width: 960px) {
   .v-app-bar {
     padding-left: inherit;
     padding-right: inherit;

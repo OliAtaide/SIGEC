@@ -30,7 +30,7 @@ const routes = [
     component: Transparencia
   },
   {
-    path: '/busca',
+    path: '/:id/busca',
     name: 'Busca',
     component: Busca
   }

@@ -19,7 +19,7 @@ export default {
     this.$store.dispatch('getVinculos');
     console.log(this.$store.state.casos);
   },
-
+  
   data: () => ({
     //
   }),
@@ -39,7 +39,7 @@ export default {
   width: 64%;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 960px) {
   .container{
     width: inherit;
   }

@@ -15,7 +15,13 @@
         </v-sheet>
       </v-card>
     </v-overlay>
-    <v-card width="50%" elevation="0">
+    <v-btn to="dashboard" rounded text class="text-none">
+      <v-icon left>
+        mdi-chevron-left-circle
+      </v-icon>
+      Voltar
+    </v-btn>
+    <v-card>
       <v-card-title>Adicionar um novo vínculo</v-card-title>
       <v-card-text>
         <v-form @submit.prevent="postVinculo">
@@ -109,14 +115,14 @@ export default {
 .v-card__title {
   color: #0c109c;
 }
-.container {
-  background-color: white;
+form{
+  width: 50% !important;
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 960px) {
   .container {
     background-color: inherit;
   }
-  .v-card {
+  form {
     width: 100% !important;
   }
 }

@@ -1,12 +1,12 @@
 <template>
   <v-container>
-    <v-row class="header">
-      <v-col>
+    <v-row class="header ma-0">
+      <div>
         <h2>Olá, Kelly Gomez</h2>
         <p>Selecione um vínculo</p>
-      </v-col>
+      </div>
       <v-spacer></v-spacer>
-      <v-col class="add-button">
+      <div class="add-button float-right">
         Adicione um vínculo
         <v-btn
           outlined
@@ -17,12 +17,12 @@
         >
           <v-icon> mdi-plus</v-icon>
         </v-btn>
-      </v-col>
+      </div>
     </v-row>
     <hr class="mb-5" />
     <v-row>
       <v-col
-        v-for="v in $store.state.vinculos"
+        v-for="(v, i) in $store.state.vinculos"
         :key="v.id"
         md="4"
         sm="12"
@@ -30,15 +30,17 @@
       >
         <v-card>
           <v-card-title>
-            <v-icon>mdi-briefcase</v-icon>
+            <v-icon color="#FCA311" left>mdi-briefcase-plus</v-icon>
             {{ v.perfil }}
           </v-card-title>
           <v-card-subtitle>
-            <v-icon>mdi-map-marker-outline</v-icon>
+            <v-icon left>mdi-map-marker-outline</v-icon>
             {{ v.estabelecimento }}
           </v-card-subtitle>
           <v-card-actions>
-            <v-btn to="busca" dark color="#0C109C" block rounded>
+            <v-btn @click="
+              $router.push({ name: 'Busca', params: { id: i } })"
+              color="#0C109C" class="text-none white--text" block rounded>
               Acessar
             </v-btn>
           </v-card-actions>
@@ -67,7 +69,7 @@ h1 {
 .header {
   color: #0096c7;
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 960px) {
   .add-button,
   .spacer {
     display: none !important;
