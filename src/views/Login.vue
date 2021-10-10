@@ -91,10 +91,6 @@
       </v-col>
     </v-row>
   </v-sheet>
-  <!-- e-mail
-usuario@lais.huol.ufrn.br
-senha
-senha@123 -->
 </template>
 
 

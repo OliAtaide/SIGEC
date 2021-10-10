@@ -311,11 +311,6 @@
                 </v-row>
               </v-card>
             </v-row>
-            <!-- <v-pagination
-              :length="1"
-              circle
-            >
-            </v-pagination> -->
           </v-card>
         </v-row>
       </v-col>
@@ -331,8 +326,7 @@ export default {
 
   created() {
     this.casos = this.$store.state.casos;
-     this.getVinculo();
-  //   this.fetchCasos();
+    this.getVinculo();
   },
 
   data() {
@@ -358,11 +352,6 @@ export default {
 
   methods: {
     getVinculo() {
-      // axios.get("/vinculos").then((response) => {
-      //   var vinculos = response.data.data;
-      //   var i = this.$route.params.id;
-      //   this.vinculo = vinculos[i];
-      // });
       var vinculos = this.$store.state.vinculos;
       var i = this.$route.params.id;
       this.vinculo = vinculos[i];

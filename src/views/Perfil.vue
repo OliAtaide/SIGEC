@@ -19,7 +19,6 @@
 </template>
 
 <script>
-// import axios from "axios";
 import VinculoCard from '@/components/VinculoCard';
 
 export default {
