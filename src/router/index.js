@@ -6,14 +6,20 @@ import Transparencia from '../views/Transparencia.vue'
 import Busca from '../views/Busca.vue'
 import AdicionarVinculo from '../views/AdicionarVinculo.vue'
 import Perfil from '../views/Perfil.vue'
+import AutoCadastro from '../views/AutoCadastro.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/auto-cadastro',
+    name: 'AutoCadastro',
+    component: AutoCadastro
   },
   {
     path: '/dashboard',

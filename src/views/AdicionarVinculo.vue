@@ -2,7 +2,7 @@
   <v-container>
     <v-overlay :value="overlay">
       <v-card light class="ok-card pa-5" width="50vw">
-        <v-btn to="dashboard" class="float-right" icon>
+        <v-btn to="dashboard" absolute right icon>
           <v-icon>mdi-close</v-icon>
         </v-btn>
         <v-sheet class="d-flex flex-column justify-center align-center ">
@@ -52,7 +52,7 @@
                 type="submit"
                 block
                 rounded
-                color="#0C109C"
+                color="var(--color1)"
                 class="text-none white--text"
                 :disabled="perfil == '' || estabelecimento == ''"
               >
@@ -113,7 +113,7 @@ export default {
 
 <style scoped>
 .v-card__title {
-  color: #0c109c;
+  color: var(--color1);
 }
 form{
   width: 50% !important;
@@ -124,6 +124,10 @@ form{
   }
   form {
     width: 100% !important;
+  }
+  .v-overlay .v-card{
+    width: inherit !important;
+    margin: 1em;
   }
 }
 </style>

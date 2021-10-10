@@ -40,7 +40,7 @@ h1 {
   font-size: 30px;
 }
 .header {
-  color: #0096c7;
+  color: var(--color3);
 }
 @media only screen and (max-width: 960px) {
   .add-button,

@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar class="white--text" color="#0096C7" app>
+  <v-app-bar class="white--text" color="var(--color3)" app>
     <v-app-bar-title>
       <router-link
         height="100%"
@@ -52,7 +52,7 @@ export default {
   methods: {
     logout() {
       this.$store.commit("logout");
-      this.$router.push("/");
+      this.$router.push("login");
     },
   },
 };

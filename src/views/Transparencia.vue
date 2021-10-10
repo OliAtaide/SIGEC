@@ -7,7 +7,7 @@
             class="text-none"
             outlined
             rounded
-            color="#fca311"
+            color="var(--color4)"
             @click="$router.push('/')"
           >
             <v-icon left>mdi-chevron-left</v-icon>
@@ -22,14 +22,14 @@
       <v-row>
         <v-col cols="12" md="4">
           <v-row class="ma-0 mb-6">
-            <v-card width="100%" class="pa-5 white--text" color="#0C109C">
+            <v-card width="100%" class="pa-5 white--text" color="var(--color1)">
               <v-row class="ma-0">
                 <v-sheet
                   width="inherit"
                   color="white"
                   class="icon-sheet pa-3 rounded-sm"
                 >
-                  <v-icon color="#0C109C">mdi-clipboard-text</v-icon>
+                  <v-icon color="var(--color1)">mdi-clipboard-text</v-icon>
                 </v-sheet>
                 <v-spacer></v-spacer>
                 <v-card-title class="pa-0">
@@ -48,7 +48,7 @@
               <v-row class="ma-0">
                 <v-sheet
                   width="inherit"
-                  color="#0C109C"
+                  color="var(--color1)"
                   class="icon-sheet pa-3 rounded-sm"
                 >
                   <v-icon color="white">mdi-clipboard-text</v-icon>
@@ -201,14 +201,14 @@ export default {
 h1 {
   font-weight: inherit;
   text-align: center;
-  color: #fca311;
+  color: var(--color4);
 }
 header {
   display: none;
 }
 .card-blue {
-  border: 1px solid #0c109c !important;
-  color: #0c109c;
+  border: 1px solid var(--color1) !important;
+  color: var(--color1);
 }
 .card-green {
   border: 1px solid #1f8f3c !important;

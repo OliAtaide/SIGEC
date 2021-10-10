@@ -5,7 +5,7 @@
         <v-row class="title ma-0">
           <v-card-title> Encerramento de caso </v-card-title>
           <v-spacer></v-spacer>
-          <v-btn class="float-right align-self-center white--text" icon>
+          <v-btn @click="overlay = false" class="float-right align-self-center white--text" icon>
             <v-icon>mdi-close-circle-outline</v-icon>
           </v-btn>
         </v-row>
@@ -43,7 +43,7 @@
       </v-card>
     </v-overlay>
     <v-sheet width="100%" class="vinculo-label d-none d-md-flex ">
-      <strong>Estabelecimento de saúde:</strong>
+      <strong class="mr-1">Estabelecimento de saúde:</strong>
       {{ vinculo.estabelecimento }}
     </v-sheet>
     <v-container>
@@ -101,7 +101,7 @@
                 @click="filtro.visivel = !filtro.visivel"
                 rounded
                 outlined
-                color="#0C109C"
+                color="var(--color1)"
                 class="botao-filtro text-none"
               >
                 <v-icon left> mdi-filter-outline</v-icon>
@@ -222,7 +222,7 @@
                       ><v-btn
                         @click="limparFiltro()"
                         rounded
-                        color="#FCA311"
+                        color="var(--color4)"
                         class="text-none mr-5 white--text"
                       >
                         <v-icon left>mdi-eraser</v-icon>
@@ -231,7 +231,7 @@
                       <v-btn
                         @click="buscaCasos()"
                         rounded
-                        color="#0C109C"
+                        color="var(--color1)"
                         class="text-none white--text"
                       >
                         <v-icon left>mdi-magnify</v-icon>
@@ -259,7 +259,7 @@
                 {{ casos.length }} registros foram encontrados
               </v-subheader>
               <v-spacer></v-spacer>
-              <v-btn rounded color="#0C109C" class="botao-exportar text-none white--text">
+              <v-btn rounded color="var(--color1)" class="botao-exportar text-none white--text">
                 <v-icon left>mdi-file-export</v-icon>
                 Exportar
               </v-btn>
@@ -290,7 +290,7 @@
                     md="6"
                     class="flex-grow-0 d-flex flex-column justify-space-around"
                   >
-                    <v-btn rounded class="text-none white--text" color="#0C109C">
+                    <v-btn rounded class="text-none white--text" color="var(--color1)">
                       <v-icon left>mdi-eye-outline</v-icon>
                       Visualizar detalhes
                     </v-btn>
@@ -478,7 +478,7 @@ export default {
 
 <style scoped>
 .botao-voltar {
-  color: #FCA311;
+  color: var(--color4);
 }
 .vinculo-label {
   padding-left: 19%;
@@ -498,7 +498,7 @@ export default {
   width: 10% !important;
 }
 .title {
-  background-color: #0096c7;
+  background-color: var(--color3);
   color: white;
 }
 @media only screen and (max-width: 960px) {
@@ -519,6 +519,10 @@ export default {
   .resultado .v-btn{
     margin-top: 1em;
     margin-bottom: 1em;
+  }
+  .v-overlay .v-card{
+    width: inherit !important;
+    margin: 1em;
   }
 }
 </style>

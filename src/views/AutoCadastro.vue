@@ -18,7 +18,7 @@
         </v-sheet>
       </v-col>
       <v-col>
-        <v-card height="90%" class="pa-10 d-flex flex-column">
+        <v-card class="pa-10 mt-5 mb-5 d-flex flex-column">
           <div class="d-flex flex-column d-md-none">
             <v-card-title class="title text-center justify-center">
               SiGEC
@@ -26,9 +26,31 @@
             <v-divider></v-divider>
           </div>
           <v-card-title class="text-center justify-center">
-            Login
+            Autocadastro
           </v-card-title>
-          <v-form @submit.prevent="submitForm">
+          <v-form>
+            <v-text-field
+              color="#008AB6"
+              label="Nome"
+              rounded
+              outlined
+              dense
+            ></v-text-field>
+            <v-text-field
+              color="#008AB6"
+              label="CPF"
+              rounded
+              outlined
+              dense
+            ></v-text-field>
+            <v-text-field
+              color="#008AB6"
+              type="date"
+              label="Data de nascimento"
+              rounded
+              outlined
+              dense
+            ></v-text-field>
             <v-text-field
               color="#008AB6"
               type="email"
@@ -36,8 +58,13 @@
               rounded
               outlined
               dense
-              prepend-inner-icon="mdi-email"
-              v-model="email"
+            ></v-text-field>
+            <v-text-field
+              color="#008AB6"
+              label="Telefone"
+              rounded
+              outlined
+              dense
             ></v-text-field>
             <v-text-field
               color="#008AB6"
@@ -46,8 +73,14 @@
               rounded
               outlined
               dense
-              prepend-inner-icon="mdi-lock"
-              v-model="password"
+            ></v-text-field>
+            <v-text-field
+              color="#008AB6"
+              type="password"
+              label="Confirmação des senha"
+              rounded
+              outlined
+              dense
             ></v-text-field>
             <v-btn
               class="text-none white--text"
@@ -56,17 +89,17 @@
               block
               rounded
             >
-              Entrar
+              Cadastrar
             </v-btn>
             <v-btn
               rounded
-              color="var(--color1)"
-              class="text-none float-right"
+              class="text-none"
               text
-              to="auto-cadastro"
+              color="var(--color1)"
+              to="login"
             >
-              Criar uma conta?
-              <v-icon right>mdi-arrow-right-bold</v-icon>
+              <v-icon left>mdi-arrow-left-bold</v-icon>
+              Login
             </v-btn>
           </v-form>
           <v-btn
@@ -100,36 +133,10 @@ senha@123 -->
 
 
 <script>
-import axios from "axios";
 
 export default {
   name: "Login",
-
-  data() {
-    return {
-      user: "",
-      email: "",
-      password: "",
-      errors: [],
-    };
-  },
-
-  methods: {
-    async submitForm() {
-      const formData = {
-        password: this.password,
-        email: this.email,
-      };
-      await axios
-        .post("auth/login", formData)
-        .then((response) => {
-          console.log(response.data);
-          this.$store.commit("authenticate");
-          this.$router.push("dashboard");
-        })
-        .catch((error) => console.log(error));
-    },
-  },
+  
 };
 </script>
 
@@ -138,7 +145,6 @@ export default {
   margin: 10%;
 }
 .sheet {
-  min-height: 100vh;
   overflow: hidden;
   background-image: url("~@/assets/bg.png");
   background-position: top;
@@ -146,9 +152,7 @@ export default {
   background-size: cover;
 }
 .v-card {
-  transform: translate(0%, -50%);
   position: relative;
-  top: 50%;
   width: 70%;
   color: var(--color1) !important;
 }

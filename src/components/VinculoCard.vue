@@ -1,7 +1,7 @@
 <template>
   <v-card v-bind:key="vinculo.id">
     <v-card-title>
-      <v-icon color="#FCA311" left>mdi-briefcase-plus</v-icon>
+      <v-icon color="var(--color4)" left>mdi-briefcase-plus</v-icon>
       {{ vinculo.perfil }}
     </v-card-title>
     <v-card-subtitle>
@@ -11,7 +11,7 @@
     <v-card-actions>
       <v-btn
         @click="$router.push({ name: 'Busca', params: { id: index } })"
-        color="#0C109C"
+        color="var(--color1)"
         class="text-none white--text"
         block
         rounded
